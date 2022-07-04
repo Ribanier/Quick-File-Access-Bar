@@ -1163,11 +1163,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Yazılım\\visual studio projeler\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu.csproj",
+      "projectUniqueName": "D:\\Yazılım\\Github ve projeler\\windows-desktop-shortcut-access-bar\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu.csproj",
       "projectName": "windows_programlar_kisayol_cubugu",
-      "projectPath": "D:\\Yazılım\\visual studio projeler\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu.csproj",
+      "projectPath": "D:\\Yazılım\\Github ve projeler\\windows-desktop-shortcut-access-bar\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu.csproj",
       "packagesPath": "C:\\Users\\sadik\\.nuget\\packages\\",
-      "outputPath": "D:\\Yazılım\\visual studio projeler\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu\\obj\\",
+      "outputPath": "D:\\Yazılım\\Github ve projeler\\windows-desktop-shortcut-access-bar\\windows_programlar_kisayol_cubugu\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

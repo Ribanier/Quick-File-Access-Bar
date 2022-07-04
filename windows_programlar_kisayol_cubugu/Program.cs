@@ -18,7 +18,7 @@ namespace windows_programlar_kisayol_cubugu
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Ayarlar());
+            Application.Run(new shortcut_main());
         }
     }
 }

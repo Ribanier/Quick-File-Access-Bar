@@ -12,9 +12,9 @@ using System.Data.SQLite;
 namespace windows_programlar_kisayol_cubugu
 {
 
-    public partial class Ayarlar : Form
+    public partial class Settings : Form
     {
-        public Ayarlar()
+        public Settings()
         {
             InitializeComponent();
         }
@@ -70,20 +70,35 @@ namespace windows_programlar_kisayol_cubugu
         private void Ayarlar_Load(object sender, EventArgs e)
         {
             baglanti();
-            SQLiteCommand comm = new SQLiteCommand("SELECT * FROM sqlite_master WHERE type = 'table' and name=@tablename", cnt);
-            comm.Parameters.AddWithValue("@tablename", "Dir");
-            SQLiteDataReader reader = comm.ExecuteReader();
+            SQLiteCommand com = new SQLiteCommand("SELECT * FROM sqlite_master WHERE type = 'table' and name=@tablename", cnt);
+            com.Parameters.AddWithValue("@tablename", "Dir");
+            SQLiteDataReader reader = com.ExecuteReader();
             if (reader.HasRows == false)
             {
-                string sad = "CREATE TABLE Dir(Path TEXT NOT NULL UNIQUE)";
+                string create = "CREATE TABLE Dir(Path TEXT NOT NULL UNIQUE)";
                 //(Path)tablo sütun adı,(TEXT)veri tipi, (Not Null)boş veriye izin yok,(UBIQUE)benzersiz veri
-                SQLiteCommand comm2 = new SQLiteCommand(sad, cnt);
+                SQLiteCommand comm = new SQLiteCommand(create, cnt);
+                comm.ExecuteNonQuery();
+                comm.Dispose();
+
+                string create1 = "CREATE TABLE Settings(settingname TEXT NOT NULL UNIQUE, status INT NOT NULL UNIQUE)";              
+                SQLiteCommand comm1 = new SQLiteCommand(create1, cnt);
+               // comm1.Parameters.AddWithValue("@varsayilandeger", 16);
+                comm1.ExecuteNonQuery();
+                comm1.Dispose();
+
+ string addshortcuts = "insert into Settings(settingname,status) values(@settingname,@value)";               
+                SQLiteCommand comm2 = new SQLiteCommand(addshortcuts, cnt);
+                comm2.Parameters.AddWithValue("@settingname", "shortcutvalue");
+                comm2.Parameters.AddWithValue("@value",16);
                 comm2.ExecuteNonQuery();
                 comm2.Dispose();
+        
             }
             reader.Close();
-            comm.Dispose();
-            listdata();
+            com.Dispose();
+            cnt.Close();
+              listdata();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -106,6 +121,22 @@ namespace windows_programlar_kisayol_cubugu
             }
             else
                 MessageBox.Show("Lütfen listeden seçin");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            baglanti();
+            string addshortcuts = "update Settings set status = @value where settingname='shortcutvalue'";
+            SQLiteCommand comm2 = new SQLiteCommand(addshortcuts,cnt);
+            comm2.Parameters.AddWithValue("@value", Convert.ToInt32(numericUpDown1.Value));
+            comm2.ExecuteNonQuery();
+            comm2.Dispose();
+            cnt.Close();
         }
     }
 }

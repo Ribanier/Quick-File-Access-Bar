@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CsfXL9Bt/urVxAevOpvYpsTczbAtbUdJFGFN3FgMJkB1iWToU5tmilWMaQeHHYJHH6xFHHtcY+AD8vxuLwMzmA==",
+  "dgSpecHash": "/ny6ahjwNkaVDFWexa35KXmWxjQPZZNiPejjLya5oaEtowsYoSY5bxJZVO+MOUigXbf4LVsxy91fnDlXuVDR1A==",
   "success": true,
-  "projectFilePath": "D:\\Yazılım\\visual studio projeler\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu.csproj",
+  "projectFilePath": "D:\\Yazılım\\Github ve projeler\\windows-desktop-shortcut-access-bar\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sadik\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\sadik\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
