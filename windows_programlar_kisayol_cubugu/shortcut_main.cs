@@ -87,6 +87,15 @@ namespace windows_programlar_kisayol_cubugu
                 {
                     path = dr["Path"].ToString();
                     //  MessageBox.Show(gelenveri);
+                    int file_count = 0;
+                    string[] dizi = System.IO.Directory.GetFiles(path);
+                    string[] dizi2 = System.IO.Directory.GetDirectories(path);
+                    foreach (string dizi1 in dizi)
+                        file_count++;
+                    foreach (string dizi3 in dizi2)
+                        file_count++;
+
+                    MessageBox.Show(file_count.ToString());
                     if (System.IO.Directory.Exists(path))
                     {
 
@@ -100,30 +109,45 @@ namespace windows_programlar_kisayol_cubugu
                         tabPage1.Height = 100;
                         tabControl1.TabPages.Add(tabPage1);
                         var picbox = new PictureBox();
-                        picbox.Width = 15; picbox.Height = 100;
+                        picbox.Width = 150; picbox.Height = 100;
                         picbox.Location = new Point(12, 24);
                         picbox.BackColor = Color.Black;
-                        picbox.Click += new EventHandler(Click_button);
+                        //picbox.Click += new EventHandler(Click_picbox);
+                        picbox.MouseClick += (sender, args) => { MessageBox.Show("sadık"); };
                         tabPage1.Controls.Add(picbox);
 
-                        /*  string[] dizi = System.IO.Directory.GetFiles(gelenveri);
-                          string[] dizi2 = System.IO.Directory.GetDirectories(gelenveri);
-                          foreach (string dizi1 in dizi)
-                          {
-                              MessageBox.Show("aaaaaaaaaaaa"+dizi1);
-                          }
-                          foreach (string dizi3 in dizi2)
-                          {
-                              MessageBox.Show("aaaaaaaaaaaaa"+dizi3);
-                          }*/
+                        var picbox1 = new PictureBox();
+                        picbox1.Width = 150; picbox.Height = 100;
+                        picbox1.Location = new Point(56, 50);
+                        picbox1.BackColor = Color.Black;
+                        //picbox.Click += new EventHandler(Click_picbox);
+                        picbox1.MouseClick += (sender, args) => { MessageBox.Show("mustafa"); };
+                        tabPage1.Controls.Add(picbox1);
+
+
+                        /* Form f = new Form(); f.MouseClick += (sender, args) => {};*/
+
+
                     }
-                }
-                dr.Close();
-                cmd.Dispose();
+
+                    /*  string[] dizi = System.IO.Directory.GetFiles(gelenveri);
+                      string[] dizi2 = System.IO.Directory.GetDirectories(gelenveri);
+                      foreach (string dizi1 in dizi)
+                      {
+                          MessageBox.Show("aaaaaaaaaaaa"+dizi1);
+                      }
+                      foreach (string dizi3 in dizi2)
+                      {
+                          MessageBox.Show("aaaaaaaaaaaaa"+dizi3);
+                      }*/
+                } dr.Close();
+            cmd.Dispose();
             }
+           
         }
+    
         public string path = "";
-        void Click_button(object sender, System.EventArgs e)
+        void Click_picbox(object sender, System.EventArgs e)
         {
             OpenFile(path);
             //  System.Diagnostics.Process.Start(path,);
