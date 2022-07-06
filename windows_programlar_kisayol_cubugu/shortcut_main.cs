@@ -70,82 +70,93 @@ namespace windows_programlar_kisayol_cubugu
         void Tasarim(int a = 0)
         {
             if (a == 0)
-            {
-                // MessageBox.Show(a.ToString());
+            {              
+               // SQLiteCommand cmd = new SQLiteCommand("Select count(*) as Path from Dir", cnt);
                 connect();
-                /* SQLiteCommand cmd = new SQLiteCommand("Select count(*) as Path from Dir", cnt);
-             int kayitSayisi = Convert.ToInt32(cmd.ExecuteScalar());
-                 //path sütununda kaç veri var
-                 MessageBox.Show(kayitSayisi.ToString());*/
-
-                //içindeki kısayollarının ayarı
+                SQLiteCommand cmd0 = new SQLiteCommand("Select Status from Settings where settingname = 'shortcutvalue'", cnt);
+                int tpshortcuts = Convert.ToInt32(cmd0.ExecuteScalar());
+                cmd0.Dispose();
                 SQLiteCommand cmd = new SQLiteCommand("Select Path from Dir", cnt);
                 SQLiteDataReader dr = cmd.ExecuteReader();
 
 
                 while (dr.Read())
                 {
-                    path = dr["Path"].ToString();
-                    //  MessageBox.Show(gelenveri);
-                    int file_count = 0;
-                    string[] dizi = System.IO.Directory.GetFiles(path);
-                    string[] dizi2 = System.IO.Directory.GetDirectories(path);
-                    foreach (string dizi1 in dizi)
-                        file_count++;
-                    foreach (string dizi3 in dizi2)
-                        file_count++;
-
-                    MessageBox.Show(file_count.ToString());
-                    if (System.IO.Directory.Exists(path))
+                    if (System.IO.Directory.Exists(dr["Path"].ToString()))
                     {
+                        path = dr["Path"].ToString();
+                        //  MessageBox.Show(gelenveri);
+                        string[] dizi = System.IO.Directory.GetDirectories(path);
+                        string[] dizi2 = System.IO.Directory.GetFiles(path);
+                        int file_count = dizi.Count() + dizi2.Count();
+                        //MessageBox.Show(file_count.ToString());
+                        string[] alldirandfile = new string[file_count];//ilk klasörler sonra dostalar
+                        int b = 0;
+                        foreach (string dir in dizi)
+                            alldirandfile[b++] = dir;
+                        foreach (string dir2 in dizi2)
+                            alldirandfile[b++] = dir2;
+                        //MessageBox.Show(alldirandfile.Count().ToString());
 
-                        TabPage tabPage1 = new TabPage();
-                        //  tabPage1.Name = "tabPage" + i.ToString();
-                        tabPage1.Text = path.Split('\\').Last();
-                        tabPage1.BackColor = Color.Transparent;
-                        tabPage1.ForeColor = Color.Black;
-                        tabPage1.Font = new Font("Verdana", 12);
-                        tabPage1.Width = 100;
-                        tabPage1.Height = 100;
-                        tabControl1.TabPages.Add(tabPage1);
-                        var picbox = new PictureBox();
-                        picbox.Width = 150; picbox.Height = 100;
-                        picbox.Location = new Point(12, 24);
-                        picbox.BackColor = Color.Black;
-                        //picbox.Click += new EventHandler(Click_picbox);
-                        picbox.MouseClick += (sender, args) => { MessageBox.Show("sadık"); };
-                        tabPage1.Controls.Add(picbox);
+                        var tabPage1 = new TabPage
+                        {
+                            Text = path.Split('\\').Last(),
+                            //Name = ,
+                            BackColor = Color.Transparent,
+                            ForeColor = Color.Black,
+                            Font = new Font("Verdana", 12),
+                            Width = 100,
+                            Height = 100,
 
-                        var picbox1 = new PictureBox();
-                        picbox1.Width = 150; picbox.Height = 100;
-                        picbox1.Location = new Point(56, 50);
-                        picbox1.BackColor = Color.Black;
-                        //picbox.Click += new EventHandler(Click_picbox);
-                        picbox1.MouseClick += (sender, args) => { MessageBox.Show("mustafa"); };
-                        tabPage1.Controls.Add(picbox1);
+                        }; tabControl1.TabPages.Add(tabPage1);
 
+                        int locx = 0, locy = 0;
+                        int tpagewidth = tabControl1.Width-10, tpageheight = tabControl1.Height;
+                        int tambolunebilenwidth = tpagewidth % 4 == 0 ? tpagewidth / 4 : (tpagewidth - (tpagewidth % 4)) / 4; int sayac1 = 0;
+                        for (int i = 0; i < file_count; i++)
+                        {
 
-                        /* Form f = new Form(); f.MouseClick += (sender, args) => {};*/
+                            var pbox = new PictureBox
+                            {
+                                Width = tambolunebilenwidth,
+                                Height = tambolunebilenwidth,
 
+                                Top = locy,
+                                Left = locx,
+                                //Location=new Point(tpagewidth,tpageheight),
+                                Name = $"Pbox{i}",
+                                Tag = alldirandfile[i],
+                                SizeMode = PictureBoxSizeMode.StretchImage,
+                                BackColor = i < dizi.Count() ? Color.Transparent : Color.FromArgb(new Random().Next(200), new Random().Next(200), new Random().Next(200)),
+                                ImageLocation = i < dizi.Count() ? "directory.png" : null,
+                                // Image = alldirandfile[i].Split(".").Last() == "exe" ? Bitmap.FromHicon(new Icon(Icon.ExtractAssociatedIcon(alldirandfile[i]), new Size(48, 48)).Handle): Bitmap.FromHicon(new Icon("a.ico", new Size(48, 48)).Handle)
+                            };
+
+                            pbox.Click += (sender, args) => { MessageBox.Show($"Picture #: {((PictureBox)sender).Tag}, Name: {((Control)sender).Name}, Current i:{i}"); OpenFile(((PictureBox)sender).Tag.ToString()); };
+                            tabPage1.Controls.Add(pbox);
+                            // locx += 30;
+                           
+                            sayac1++;
+                            if (sayac1 == 4)
+                            {
+                                sayac1 = 0;
+                                locy += tambolunebilenwidth;
+                                locx = 0;
+                            }
+                            else
+                                locx += tambolunebilenwidth;
+                               
+                        }
 
                     }
 
-                    /*  string[] dizi = System.IO.Directory.GetFiles(gelenveri);
-                      string[] dizi2 = System.IO.Directory.GetDirectories(gelenveri);
-                      foreach (string dizi1 in dizi)
-                      {
-                          MessageBox.Show("aaaaaaaaaaaa"+dizi1);
-                      }
-                      foreach (string dizi3 in dizi2)
-                      {
-                          MessageBox.Show("aaaaaaaaaaaaa"+dizi3);
-                      }*/
-                } dr.Close();
-            cmd.Dispose();
+                }
+                dr.Close();
+                cmd.Dispose();
+                cnt.Close();
             }
-           
         }
-    
+
         public string path = "";
         void Click_picbox(object sender, System.EventArgs e)
         {
@@ -157,16 +168,16 @@ namespace windows_programlar_kisayol_cubugu
         }
         public static void OpenFile(string path, bool isDirectory = false)//klasör açma
         {
-          
-                ProcessStartInfo pi = new ProcessStartInfo(path);
-                pi.Arguments = Path.GetFileName(path);
-                pi.UseShellExecute = true;
-                pi.WindowStyle = ProcessWindowStyle.Normal;
-                pi.Verb = "OPEN";
-                Process proc = new Process();
-                proc.StartInfo = pi;
-                proc.Start();
-            
+
+            ProcessStartInfo pi = new ProcessStartInfo(path);
+            pi.Arguments = Path.GetFileName(path);
+            pi.UseShellExecute = true;
+            pi.WindowStyle = ProcessWindowStyle.Normal;
+            pi.Verb = "OPEN";
+            Process proc = new Process();
+            proc.StartInfo = pi;
+            proc.Start();
+
         }
         private void ayarlarToolStripMenuItem_Click(object sender, EventArgs e)
         {
