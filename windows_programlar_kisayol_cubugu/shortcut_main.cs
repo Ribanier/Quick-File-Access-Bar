@@ -97,57 +97,69 @@ namespace windows_programlar_kisayol_cubugu
                         foreach (string dir2 in dizi2)
                             alldirandfile[b++] = dir2;
                         //MessageBox.Show(alldirandfile.Count().ToString());
-
-                        var tabPage1 = new TabPage
-                        {
-                            Text = path.Split('\\').Last(),
-                            //Name = ,
-                            BackColor = Color.Transparent,
-                            ForeColor = Color.Black,
-                            Font = new Font("Verdana", 12),
-                            Width = 100,
-                            Height = 100,
-
-                        }; tabControl1.TabPages.Add(tabPage1);
-
-                        int locx = 0, locy = 0;
+ 
                         int tpagewidth = tabControl1.Width-10, tpageheight = tabControl1.Height;
-                        int tambolunebilenwidth = tpagewidth % 4 == 0 ? tpagewidth / 4 : (tpagewidth - (tpagewidth % 4)) / 4; int sayac1 = 0;
-                        for (int i = 0; i < file_count; i++)
+                        int tambolunebilenwidth = tpagewidth % 4 == 0 ? tpagewidth / 4 : (tpagewidth - (tpagewidth % 4)) / 4; 
+                        int heightfit = tpageheight % tpagewidth == 0 ? tpageheight / tambolunebilenwidth : (tpageheight - (tpageheight % tambolunebilenwidth)) / tambolunebilenwidth;
+                        int maxfile = heightfit * 4;
+                        int sayac3 = 0;
+                        int calistirma=maxfile>=file_count?1
+                            :file_count%maxfile==0?file_count/maxfile
+                            :(file_count-(file_count%maxfile))/maxfile+1;
+                        MessageBox.Show(calistirma.ToString());
+                        for (int j = 0; j < calistirma; j++)
                         {
-
-                            var pbox = new PictureBox
+                            var tabPage1 = new TabPage
                             {
-                                Width = tambolunebilenwidth,
-                                Height = tambolunebilenwidth,
+                                Text = path.Split('\\').Last(),
+                                //Name = ,
+                                BackColor = Color.Transparent,
+                                ForeColor = Color.Black,
+                                Font = new Font("Verdana", 12),
+                                Width = 100,
+                                Height = 100,
 
-                                Top = locy,
-                                Left = locx,
-                                //Location=new Point(tpagewidth,tpageheight),
-                                Name = $"Pbox{i}",
-                                Tag = alldirandfile[i],
-                                SizeMode = PictureBoxSizeMode.StretchImage,
-                                BackColor = i < dizi.Count() ? Color.Transparent : Color.FromArgb(new Random().Next(200), new Random().Next(200), new Random().Next(200)),
-                                ImageLocation = i < dizi.Count() ? "directory.png" : null,
-                                // Image = alldirandfile[i].Split(".").Last() == "exe" ? Bitmap.FromHicon(new Icon(Icon.ExtractAssociatedIcon(alldirandfile[i]), new Size(48, 48)).Handle): Bitmap.FromHicon(new Icon("a.ico", new Size(48, 48)).Handle)
-                            };
+                            }; tabControl1.TabPages.Add(tabPage1);
 
-                            pbox.Click += (sender, args) => { MessageBox.Show($"Picture #: {((PictureBox)sender).Tag}, Name: {((Control)sender).Name}, Current i:{i}"); OpenFile(((PictureBox)sender).Tag.ToString()); };
-                            tabPage1.Controls.Add(pbox);
-                            // locx += 30;
-                           
-                            sayac1++;
-                            if (sayac1 == 4)
+                            int locx = 0, locy = 0; int sayac1 = 0;
+
+                            for (int i = 0; i < maxfile; i++)
                             {
-                                sayac1 = 0;
-                                locy += tambolunebilenwidth;
-                                locx = 0;
+                                var pbox = new PictureBox
+                                {
+                                    Width = tambolunebilenwidth,
+                                    Height = tambolunebilenwidth,
+
+                                    Top = locy,
+                                    Left = locx,
+                                    //Location=new Point(tpagewidth,tpageheight),
+                                    Name = $"Pbox{sayac3}",
+                                    Tag = alldirandfile[sayac3],
+                                    SizeMode = PictureBoxSizeMode.StretchImage,
+                                    BackColor = i < dizi.Count() ? Color.Transparent : Color.FromArgb(new Random().Next(200), new Random().Next(200), new Random().Next(200)),
+                                    ImageLocation = i < dizi.Count() ? "directory.png" : null,
+                                    // Image = alldirandfile[i].Split(".").Last() == "exe" ? Bitmap.FromHicon(new Icon(Icon.ExtractAssociatedIcon(alldirandfile[i]), new Size(48, 48)).Handle): Bitmap.FromHicon(new Icon("a.ico", new Size(48, 48)).Handle)
+                                };
+
+                                pbox.Click += (sender, args) => { MessageBox.Show($"Picture #: {((PictureBox)sender).Tag}, Name: {((Control)sender).Name}, Current i:{sayac3}"); OpenFile(((PictureBox)sender).Tag.ToString()); };
+                                tabPage1.Controls.Add(pbox);
+                                // locx += 30;
+
+                                sayac1++;
+                                if (sayac1 == 4)
+                                {
+                                    sayac1 = 0;
+                                    locy += tambolunebilenwidth;
+                                    locx = 0;
+                                }
+                                else
+                                    locx += tambolunebilenwidth;
+
+                                sayac3++;
+                                if (sayac3 == file_count) break;
                             }
-                            else
-                                locx += tambolunebilenwidth;
-                               
-                        }
 
+                        }
                     }
 
                 }
