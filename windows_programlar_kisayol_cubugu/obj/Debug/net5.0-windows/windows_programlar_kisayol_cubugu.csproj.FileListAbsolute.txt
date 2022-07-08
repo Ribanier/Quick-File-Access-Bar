@@ -60,7 +60,6 @@ D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_prog
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\windows_programlar_kisayol_cubugu.csproj.CoreCompileInputs.cache
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\windows_programlar_kisayol_cubugu.csproj.CopyComplete
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\windows_programlar_kisayol_cubugu.dll
-D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\refint\windows_programlar_kisayol_cubugu.dll
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\windows_programlar_kisayol_cubugu.pdb
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\windows_programlar_kisayol_cubugu.genruntimeconfig.cache
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\ref\windows_programlar_kisayol_cubugu.dll
@@ -100,3 +99,4 @@ D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar - Kopya\wind
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar - Kopya\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\refint\windows_programlar_kisayol_cubugu.dll
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\windows_programlar_kisayol_cubugu.Settings.resources
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\windows_programlar_kisayol_cubugu.shortcut_main.resources
+D:\Yazılım\GitHub ve Projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\bin\Debug\net5.0-windows\ref\windows_programlar_kisayol_cubugu.dll

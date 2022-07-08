@@ -1157,23 +1157,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sadik\\.nuget\\packages\\": {},
-    "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\musta\\.nuget\\packages\\": {},
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Yazılım\\Github ve projeler\\windows-desktop-shortcut-access-bar\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu.csproj",
+      "projectUniqueName": "D:\\Yazılım\\GitHub ve Projeler\\windows-desktop-shortcut-access-bar\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu.csproj",
       "projectName": "windows_programlar_kisayol_cubugu",
-      "projectPath": "D:\\Yazılım\\Github ve projeler\\windows-desktop-shortcut-access-bar\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu.csproj",
-      "packagesPath": "C:\\Users\\sadik\\.nuget\\packages\\",
-      "outputPath": "D:\\Yazılım\\Github ve projeler\\windows-desktop-shortcut-access-bar\\windows_programlar_kisayol_cubugu\\obj\\",
+      "projectPath": "D:\\Yazılım\\GitHub ve Projeler\\windows-desktop-shortcut-access-bar\\windows_programlar_kisayol_cubugu\\windows_programlar_kisayol_cubugu.csproj",
+      "packagesPath": "C:\\Users\\musta\\.nuget\\packages\\",
+      "outputPath": "D:\\Yazılım\\GitHub ve Projeler\\windows-desktop-shortcut-access-bar\\windows_programlar_kisayol_cubugu\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\sadik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\musta\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1215,6 +1215,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.17, 5.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -1223,7 +1241,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.409\\RuntimeIdentifierGraph.json"
       }
     }
   }
