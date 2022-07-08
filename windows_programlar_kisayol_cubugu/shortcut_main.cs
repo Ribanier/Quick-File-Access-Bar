@@ -70,16 +70,14 @@ namespace windows_programlar_kisayol_cubugu
         void Tasarim(int a = 0)
         {
             if (a == 0)
-            {              
-               // SQLiteCommand cmd = new SQLiteCommand("Select count(*) as Path from Dir", cnt);
+            {
+                // SQLiteCommand cmd = new SQLiteCommand("Select count(*) as Path from Dir", cnt);
                 connect();
-                SQLiteCommand cmd0 = new SQLiteCommand("Select Status from Settings where settingname = 'shortcutvalue'", cnt);
+              /*SQLiteCommand cmd0 = new SQLiteCommand("Select Status from Settings where settingname = 'shortcutvalue'", cnt);
                 int tpshortcuts = Convert.ToInt32(cmd0.ExecuteScalar());
-                cmd0.Dispose();
+                cmd0.Dispose();*/
                 SQLiteCommand cmd = new SQLiteCommand("Select Path from Dir", cnt);
                 SQLiteDataReader dr = cmd.ExecuteReader();
-
-
                 while (dr.Read())
                 {
                     if (System.IO.Directory.Exists(dr["Path"].ToString()))
@@ -97,16 +95,16 @@ namespace windows_programlar_kisayol_cubugu
                         foreach (string dir2 in dizi2)
                             alldirandfile[b++] = dir2;
                         //MessageBox.Show(alldirandfile.Count().ToString());
- 
-                        int tpagewidth = tabControl1.Width-10, tpageheight = tabControl1.Height;
-                        int tambolunebilenwidth = tpagewidth % 4 == 0 ? tpagewidth / 4 : (tpagewidth - (tpagewidth % 4)) / 4; 
+
+                        int tpagewidth = tabControl1.Width - 10, tpageheight = tabControl1.Height;
+                        int tambolunebilenwidth = tpagewidth % 4 == 0 ? tpagewidth / 4 : (tpagewidth - (tpagewidth % 4)) / 4;
                         int heightfit = tpageheight % tpagewidth == 0 ? tpageheight / tambolunebilenwidth : (tpageheight - (tpageheight % tambolunebilenwidth)) / tambolunebilenwidth;
                         int maxfile = heightfit * 4;
                         int sayac3 = 0;
-                        int calistirma=maxfile>=file_count?1
-                            :file_count%maxfile==0?file_count/maxfile
-                            :(file_count-(file_count%maxfile))/maxfile+1;
-                      //  MessageBox.Show(calistirma.ToString());
+                        int calistirma = maxfile >= file_count ? 1
+                            : file_count % maxfile == 0 ? file_count / maxfile
+                            : (file_count - (file_count % maxfile)) / maxfile + 1;
+                        //  MessageBox.Show(calistirma.ToString());
                         for (int j = 0; j < calistirma; j++)
                         {
                             var tabPage1 = new TabPage
@@ -125,42 +123,53 @@ namespace windows_programlar_kisayol_cubugu
 
                             for (int i = 0; i < maxfile; i++)
                             {
-                                var fileextension = sayac3 < dizi.Count()? "":new System.IO.FileInfo(alldirandfile[sayac3]).Extension;
+                                var fileextension = sayac3 < dizi.Count() ? "" : new System.IO.FileInfo(alldirandfile[sayac3]).Extension;
                                 string iconpic = @"Extension\default.png";
-                                if(fileextension!="")
+                                if (fileextension != "")
                                 {
                                     if (System.IO.File.Exists(@"Extension\" + fileextension.Split(".").Last() + ".png"))
-                                        iconpic = @"Extension\"+ fileextension.Split(".").Last() + ".png";
+                                        iconpic = @"Extension\" + fileextension.Split(".").Last() + ".png";
                                 }
                                 // MessageBox.Show(fileextension);
                                 var pbox = new PictureBox
                                 {
                                     Width = tambolunebilenwidth,
                                     Height = tambolunebilenwidth,
-
                                     Top = locy,
                                     Left = locx,
                                     //Location=new Point(tpagewidth,tpageheight),
                                     Name = $"Pbox{sayac3}",
                                     Tag = alldirandfile[sayac3],
                                     SizeMode = PictureBoxSizeMode.StretchImage,
-                                    BackColor =/*sayac3< dizi.Count() ?*/ Color.Transparent/* : Color.FromArgb(new Random().Next(200), new Random().Next(200), new Random().Next(200))*/,
-                                    ImageLocation = sayac3 < dizi.Count() ? @"Extension\directory.png":iconpic,
-                                    /*sayac3 < dizi.Count() ? @"Extension\directory.png"
-                                    : fileextension==".JPG"||fileextension==".PNG"||fileextension==".JPEG"? @"Extension\picture.png"
-                                    : fileextension==".PDF" ? @"Extension\pdf.png" : @"Extension\file.png"*/
+                                    BackColor =Color.Transparent,
+                                    ImageLocation = sayac3 < dizi.Count() ? @"Extension\directory.png" : iconpic,
+                                    
+
                                     // Image = alldirandfile[i].Split(".").Last() == "exe" ? Bitmap.FromHicon(new Icon(Icon.ExtractAssociatedIcon(alldirandfile[i]), new Size(48, 48)).Handle): Bitmap.FromHicon(new Icon("a.ico", new Size(48, 48)).Handle)
                                 };
-                            //   MessageBox.Show(alldirandfile[sayac3]);
+                                var label = new Label
+                                {
+                                    Text = alldirandfile[sayac3].Split("\\").Last(),
+                                    Width = tambolunebilenwidth,
+                                    Height = tambolunebilenwidth / 5,
+                                    Top = locy + tambolunebilenwidth,
+                                    Left = locx,
+                                    ForeColor = Color.Black,
+                                    BackColor = Color.Transparent,
+                                    Tag = alldirandfile[sayac3].Split("\\").Last()
+                                };
+                                //   MessageBox.Show(alldirandfile[sayac3]);
                                 pbox.Click += (sender, args) => { MessageBox.Show($"Picture #: {((PictureBox)sender).Tag}, Name: {((Control)sender).Name}, Current i:{sayac3}"); OpenFile(((PictureBox)sender).Tag.ToString()); };
                                 tabPage1.Controls.Add(pbox);
+                                label.MouseHover += (sender, args) => { ToolTip tp = new ToolTip(); tp.SetToolTip(label, ((Label)sender).Tag.ToString()); };
+                                tabPage1.Controls.Add(label);
                                 // locx += 30;
 
                                 sayac1++;
                                 if (sayac1 == 4)
                                 {
                                     sayac1 = 0;
-                                    locy += tambolunebilenwidth;
+                                    locy += tambolunebilenwidth + tambolunebilenwidth / 5;
                                     locx = 0;
                                 }
                                 else
