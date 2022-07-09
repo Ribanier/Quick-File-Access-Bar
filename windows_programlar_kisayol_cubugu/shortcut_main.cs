@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SQLite;
 using System.IO;
 using System.Diagnostics;
+using IWshRuntimeLibrary;
 
 namespace windows_programlar_kisayol_cubugu
 {
@@ -49,21 +50,21 @@ namespace windows_programlar_kisayol_cubugu
 
         private void button1_Click(object sender, EventArgs e)
         {
-             if (this.Height != ekran_y)
-                {
-                    button1.Text = ">";
-                    this.Height = ekran_y;
-                    this.Width = ekran_x % 4 == 0 ? ekran_x / 4 : (ekran_x - (ekran_x % 4)) / 4;
-                    this.Location = new Point(ekran_x - this.Width, 0);
-                }
-                else
-                {
-                    button1.Text = "<";
-                    this.Width = 10; this.Height = 26;
-                    var frmheightloc = ekran_y % 2 == 0 ? (ekran_y / 2) - (this.Height / 2) : (++ekran_y / 2) - (this.Height / 2);
-                    this.Location = new Point(ekran_x - this.Width, frmheightloc);
-                }
-       
+            if (this.Height != ekran_y)
+            {
+                button1.Text = ">";
+                this.Height = ekran_y;
+                this.Width = ekran_x % 4 == 0 ? ekran_x / 4 : (ekran_x - (ekran_x % 4)) / 4;
+                this.Location = new Point(ekran_x - this.Width, 0);
+            }
+            else
+            {
+                button1.Text = "<";
+                this.Width = 10; this.Height = 26;
+                var frmheightloc = ekran_y % 2 == 0 ? (ekran_y / 2) - (this.Height / 2) : (++ekran_y / 2) - (this.Height / 2);
+                this.Location = new Point(ekran_x - this.Width, frmheightloc);
+            }
+
             Tasarim(sayac++);
 
         }
@@ -74,9 +75,9 @@ namespace windows_programlar_kisayol_cubugu
             {
                 // SQLiteCommand cmd = new SQLiteCommand("Select count(*) as Path from Dir", cnt);
                 connect();
-              /*SQLiteCommand cmd0 = new SQLiteCommand("Select Status from Settings where settingname = 'shortcutvalue'", cnt);
-                int tpshortcuts = Convert.ToInt32(cmd0.ExecuteScalar());
-                cmd0.Dispose();*/
+                /*SQLiteCommand cmd0 = new SQLiteCommand("Select Status from Settings where settingname = 'shortcutvalue'", cnt);
+                  int tpshortcuts = Convert.ToInt32(cmd0.ExecuteScalar());
+                  cmd0.Dispose();*/
                 SQLiteCommand cmd = new SQLiteCommand("Select Path from Dir", cnt);
                 SQLiteDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -97,85 +98,103 @@ namespace windows_programlar_kisayol_cubugu
                             alldirandfile[b++] = dir2;
                         //MessageBox.Show(alldirandfile.Count().ToString());
 
-                        
-                        //  MessageBox.Show(calistirma.ToString());
-                        
-                            var tabPage1 = new TabPage
-                            {
-                                Text = path.Split('\\').Last(),
-                                //Name = ,
-                                BackColor = Color.Transparent,
-                                ForeColor = Color.Black,
-                                Font = new Font("Verdana", 12),
-                                Width = 100,
-                                Height = 100,
-                                AutoScroll=true                               
-                            }; tabControl1.TabPages.Add(tabPage1);
 
-int tpagewidth = tabPage1.Width-20, tpageheight = tabPage1.Height;
+                        //  MessageBox.Show(calistirma.ToString());
+
+                        var tabPage1 = new TabPage
+                        {
+                            Text = path.Split('\\').Last(),
+                            //Name = ,
+                            BackColor = Color.Transparent,
+                            ForeColor = Color.Black,
+                            Font = new Font("Verdana", 12),
+                            Width = 100,
+                            Height = 100,
+                            AutoScroll = true
+                        }; tabControl1.TabPages.Add(tabPage1);
+
+                        int tpagewidth = tabPage1.Width - 20, tpageheight = tabPage1.Height;
                         int shortcutwidth = tpagewidth / 4;//tpagewidth % 4 == 0 ? tpagewidth / 4 : (tpagewidth - (tpagewidth % 4)) / 4;
                         int heightfit = tpageheight / shortcutwidth; //tpageheight % tpagewidth == 0 ? tpageheight / shortcutwidth : (tpageheight - (tpageheight % shortcutwidth)) / shortcutwidth;
-         
-                            int locx = 0, locy = 0; int sayac1 = 0;
 
-                            for (int i = 0; i < file_count; i++)
+                        int locx = 0, locy = 0; int sayac1 = 0;
+
+                        for (int i = 0; i < file_count; i++)
+                        {
+                            var fileextension = i < dizi.Count() ? "" : new System.IO.FileInfo(alldirandfile[i]).Extension;
+                            string iconpic = @"Extension\default.png";
+                            if (fileextension != "")
                             {
-                                var fileextension = i < dizi.Count() ? "" : new System.IO.FileInfo(alldirandfile[i]).Extension;
-                                string iconpic = @"Extension\default.png";
-                                if (fileextension != "")
-                                {
-                                    if (System.IO.File.Exists(@"Extension\" + fileextension.Split(".").Last() + ".png"))
-                                        iconpic = @"Extension\" + fileextension.Split(".").Last() + ".png";
-                                }
-                                // MessageBox.Show(fileextension);
-                                var pbox = new PictureBox
-                                {
-                                    Width = shortcutwidth,
-                                    Height = shortcutwidth,
-                                    Top = locy,
-                                    Left = locx,
-                                    //Location=new Point(tpagewidth,tpageheight),
-                                    Name = $"Pbox{i}",
-                                    Tag = alldirandfile[i],
-                                    SizeMode = PictureBoxSizeMode.StretchImage,
-                                    BackColor =Color.Transparent,
-                                    ImageLocation = i < dizi.Count() ? @"Extension\directory.png" : iconpic,
-                                    
-
-                                    // Image = alldirandfile[i].Split(".").Last() == "exe" ? Bitmap.FromHicon(new Icon(Icon.ExtractAssociatedIcon(alldirandfile[i]), new Size(48, 48)).Handle): Bitmap.FromHicon(new Icon("a.ico", new Size(48, 48)).Handle)
-                                };
-                                var label = new Label
-                                {
-                                    Text = alldirandfile[i].Split("\\").Last(),
-                                    Width = shortcutwidth,
-                                    Height = shortcutwidth / 5,
-                                    Top = locy + shortcutwidth,
-                                    Left = locx,
-                                    ForeColor = Color.Black,
-                                    BackColor = Color.Transparent,
-                                    Tag = alldirandfile[i].Split("\\").Last()
-                                };
-                                //   MessageBox.Show(alldirandfile[sayac3]);
-                                pbox.Click += (sender, args) => { MessageBox.Show($"Picture #: {((PictureBox)sender).Tag}, Name: {((Control)sender).Name}, Current i:{i}"); OpenFile(((PictureBox)sender).Tag.ToString()); };
-                                tabPage1.Controls.Add(pbox);
-                                label.MouseHover += (sender, args) => { ToolTip tp = new ToolTip(); tp.SetToolTip(label, ((Label)sender).Tag.ToString()); };
-                                tabPage1.Controls.Add(label);
-                                // locx += 30;
-
-                                sayac1++;
-                                if (sayac1 == 4)
-                                {
-                                    sayac1 = 0;
-                                    locy += shortcutwidth + shortcutwidth / 5;
-                                    locx = 0;
-                                }
-                                else
-                                    locx += shortcutwidth;
-
-                                
+                                if (System.IO.File.Exists(@"Extension\" + fileextension.Split(".").Last() + ".png"))
+                                    iconpic = @"Extension\" + fileextension.Split(".").Last() + ".png";
                             }
+                            // MessageBox.Show(fileextension);
+                            var pbox = new PictureBox
+                            {
+                                Width = shortcutwidth,
+                                Height = shortcutwidth,
+                                Top = locy,
+                                Left = locx,
+                                //Location=new Point(tpagewidth,tpageheight),
+                                Name = $"Pbox{i}",
+                                Tag = alldirandfile[i],
+                                SizeMode = PictureBoxSizeMode.StretchImage,
+                                BackColor = Color.Transparent,
+                                // ImageLocation = i < dizi.Count() ? @"Extension\directory.png" : iconpic,
+                                // Image = alldirandfile[i].Split(".").Last() == "exe" ? Bitmap.FromHicon(new Icon(Icon.ExtractAssociatedIcon(alldirandfile[i]), new Size(48, 48)).Handle): Bitmap.FromHicon(new Icon("a.ico", new Size(48, 48)).Handle)
+                            };
 
-                        
+                            if (fileextension == ".lnk" || fileextension == ".exe")
+                            {
+                                try
+                                {
+
+                                    if (fileextension == ".lnk")
+                                    {
+                                        WshShell shell = new WshShell();
+                                        WshShortcut shortcut = (WshShortcut)shell.CreateShortcut(alldirandfile[i]);
+                                        pbox.Image = Bitmap.FromHicon(Icon.ExtractAssociatedIcon(shortcut.TargetPath).Handle);
+                                    }
+                                    else
+                                        pbox.Image = Bitmap.FromHicon(Icon.ExtractAssociatedIcon(alldirandfile[i]).Handle);
+                                }
+                                catch { pbox.ImageLocation = i < dizi.Count() ? @"Extension\directory.png" : iconpic; }
+                            }
+                            else
+                                pbox.ImageLocation = i < dizi.Count() ? @"Extension\directory.png" : iconpic;
+
+                            var label = new Label
+                            {
+                                Text = alldirandfile[i].Split("\\").Last(),
+                                Width = shortcutwidth,
+                                Height = shortcutwidth / 5,
+                                Top = locy + shortcutwidth,
+                                Left = locx,
+                                ForeColor = Color.Black,
+                                BackColor = Color.Transparent,
+                                Tag = alldirandfile[i].Split("\\").Last()
+                            };
+                            //   MessageBox.Show(alldirandfile[sayac3]);
+                            pbox.Click += (sender, args) => { MessageBox.Show($"Picture #: {((PictureBox)sender).Tag}, Name: {((Control)sender).Name}, Current i:{i}"); OpenFile(((PictureBox)sender).Tag.ToString()); };
+                            tabPage1.Controls.Add(pbox);
+                            label.MouseHover += (sender, args) => { ToolTip tp = new ToolTip(); tp.SetToolTip(label, ((Label)sender).Tag.ToString()); };
+                            tabPage1.Controls.Add(label);
+                            // locx += 30;
+
+                            sayac1++;
+                            if (sayac1 == 4)
+                            {
+                                sayac1 = 0;
+                                locy += shortcutwidth + shortcutwidth / 5;
+                                locx = 0;
+                            }
+                            else
+                                locx += shortcutwidth;
+
+
+                        }
+
+
                     }
 
                 }

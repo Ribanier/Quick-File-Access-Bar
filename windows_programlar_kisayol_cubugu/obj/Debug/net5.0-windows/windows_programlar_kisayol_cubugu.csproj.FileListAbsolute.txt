@@ -100,3 +100,5 @@ D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar - Kopya\wind
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar - Kopya\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\refint\windows_programlar_kisayol_cubugu.dll
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\windows_programlar_kisayol_cubugu.Settings.resources
 D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\windows_programlar_kisayol_cubugu.shortcut_main.resources
+D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\Interop.IWshRuntimeLibrary.dll
+D:\Yazılım\Github ve projeler\windows-desktop-shortcut-access-bar\windows_programlar_kisayol_cubugu\obj\Debug\net5.0-windows\windows_programlar_kisayol_cubugu.csproj.ResolveComReference.cache
