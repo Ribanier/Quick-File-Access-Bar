@@ -59,7 +59,7 @@
             this.çıkışToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(17, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(158, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(278, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -75,12 +75,14 @@
             this.cıkısToolStripMenuItem.Name = "cıkısToolStripMenuItem";
             this.cıkısToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.cıkısToolStripMenuItem.Text = "Yenile";
+            this.cıkısToolStripMenuItem.Click += new System.EventHandler(this.cıkısToolStripMenuItem_Click);
             // 
             // çıkışToolStripMenuItem
             // 
             this.çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
             this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.çıkışToolStripMenuItem.Text = "Çıkış";
+            this.çıkışToolStripMenuItem.Click += new System.EventHandler(this.çıkışToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
