@@ -29,6 +29,9 @@ namespace windows_programlar_kisayol_cubugu
         int ekran_y = Screen.GetBounds(new Point(0, 0)).Height;
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+
+            this.Icon = new Icon("Appicon.ico");
             //Başlangıç ayarı
             button1.Text = "<";
             this.Width = 10; this.Height = 26;
