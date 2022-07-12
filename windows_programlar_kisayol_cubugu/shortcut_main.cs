@@ -73,7 +73,7 @@ namespace windows_programlar_kisayol_cubugu
 
         }
 
-        void Tasarim()
+        public void Tasarim()
         {
 
             // SQLiteCommand cmd = new SQLiteCommand("Select count(*) as Path from Dir", cnt);
@@ -175,6 +175,7 @@ namespace windows_programlar_kisayol_cubugu
                             Left = locx,
                             ForeColor = Color.Black,
                             BackColor = Color.Transparent,
+                            Font = new Font("Verdana", 12),
                             Tag = alldirandfile[i].Split("\\").Last()
                         };
                         //   MessageBox.Show(alldirandfile[sayac3]);
