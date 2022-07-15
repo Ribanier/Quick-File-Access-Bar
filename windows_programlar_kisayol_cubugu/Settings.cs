@@ -90,8 +90,8 @@ namespace windows_programlar_kisayol_cubugu
 
                 string addshortcuts = "insert into Settings(settingname,status) values(@settingname,@value)";
                 SQLiteCommand comm2 = new SQLiteCommand(addshortcuts, cnt);
-                comm2.Parameters.AddWithValue("@settingname", "shortcutvalue");
-                comm2.Parameters.AddWithValue("@value", 16);
+                comm2.Parameters.AddWithValue("@settingname", "shortcutsize");
+                comm2.Parameters.AddWithValue("@value", 60);
                 comm2.ExecuteNonQuery();
                 comm2.Dispose();
 
