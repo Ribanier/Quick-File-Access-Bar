@@ -16,90 +16,35 @@ namespace windows_programlar_kisayol_cubugu
 {
     public partial class shortcut_main : Form
     {
-        SQLiteConnection cnt = new SQLiteConnection(@"Data Source = database.db");
-        void connect()
-        {
-            if (cnt.State == ConnectionState.Closed) cnt.Open();
-        }
         public shortcut_main()
         {
             InitializeComponent();
         }
-        int ekran_x = Screen.GetBounds(new Point(0, 0)).Width;
-        int ekran_y = Screen.GetBounds(new Point(0, 0)).Height;
-        private void Form1_Load(object sender, EventArgs e)
+        #region Methods
+        void connect()//veri tabanı bağlantısı kontrolu 
         {
-            this.Icon = new Icon("Appicon.ico");
-            trackbarvalue = 30;
-
-            //Başlangıç ayarı
-            button1.Text = "<";
-            this.Width = 10; this.Height = 26;
-            var frmheightloc = ekran_y % 2 == 0 ? (ekran_y / 2) - (this.Height / 2) : (++ekran_y / 2) - (this.Height / 2);
-            this.Location = new Point(ekran_x - this.Width, frmheightloc);
-            connect();
-            SQLiteCommand com = new SQLiteCommand("SELECT * FROM sqlite_master WHERE type = 'table' and name=@tablename", cnt);
-            com.Parameters.AddWithValue("@tablename", "Dir");
-            SQLiteDataReader reader = com.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                var settings = new Settings();
-                settings.Show();
-            }
-            else
-            {
-                SQLiteCommand cmd = new SQLiteCommand("select * from dir", cnt);
-                var rd = cmd.ExecuteReader();
-                if (rd.HasRows == false)
-                {
-                    var settings = new Settings();
-                    settings.Show(); cmd.Dispose();
-                    rd.Close();
-                }
-
-            }
+            if (cnt.State == ConnectionState.Closed) cnt.Open();
+        }
+        public int trackbarcontrol()//trackbarın veritabanındaki değerini kontrol eder
+        {
             try
             {
+                connect();
                 SQLiteCommand cmd1 = new SQLiteCommand("select status from Settings where settingname =@settingname", cnt);
                 cmd1.Parameters.AddWithValue("@settingname", "shortcutsize");
-                trackbarvalue = Convert.ToInt32(cmd1.ExecuteScalar());
-                trackBar1.Value = trackbarvalue;
+                int a = Convert.ToInt32(cmd1.ExecuteScalar());
+                cmd1.Dispose();
+                cnt.Close();
+                return a;
             }
             catch
             {
-                trackBar1.Value = trackbarvalue;
+                return 30;
             }
-
-            cnt.Close();
 
         }
-        int btnsayac = 0;
-        private void button1_Click(object sender, EventArgs e)
+        public void Tasarim()//uygulamanın klasor olusumu ve düzenini tasarlamak
         {
-            if (this.Height != ekran_y)
-            {
-                button1.Text = ">";
-                this.Height = ekran_y;
-                this.Width = ekran_x % 4 == 0 ? ekran_x / 4 : (ekran_x - (ekran_x % 4)) / 4;
-                this.Location = new Point(ekran_x - this.Width, 0);
-            }
-            else
-            {
-                button1.Text = "<";
-                this.Width = 10; this.Height = 26;
-                var frmheightloc = ekran_y % 2 == 0 ? (ekran_y / 2) - (this.Height / 2) : (++ekran_y / 2) - (this.Height / 2);
-                this.Location = new Point(ekran_x - this.Width, frmheightloc);
-            }
-            if (btnsayac == 0)
-            { Tasarim(); btnsayac++; }
-
-
-        }
-        int trackbarvalue;
-
-        public void Tasarim()
-        {
-            trackbarvalue = trackBar1.Value;
             // SQLiteCommand cmd = new SQLiteCommand("Select count(*) as Path from Dir", cnt);
             /*SQLiteCommand cmd0 = new SQLiteCommand("Select Status from Settings where settingname = 'shortcutvalue'", cnt);
               int tpshortcuts = Convert.ToInt32(cmd0.ExecuteScalar());
@@ -137,11 +82,10 @@ namespace windows_programlar_kisayol_cubugu
                     };
                     tabControl1.TabPages.Add(tabPage1);
 
-                    int tpagewidth = tabPage1.Width , tpageheight = tabPage1.Height;
-                    int scutwidthheight = trackbarvalue;//tpagewidth % 4 == 0 ? tpagewidth / 4 : (tpagewidth - (tpagewidth % 4)) / 4;
+                    int tpagewidth = tabPage1.Width, tpageheight = tabPage1.Height;
+                    int scutwidthheight = trackBar1.Value;
                     int yanyanasirasi = tpagewidth / scutwidthheight;
                     int fontboyut = scutwidthheight > 82 ? 11 : scutwidthheight > 64 ? 10 : scutwidthheight > 46 ? 9 : 8;
-                    int heightfit = tpageheight / scutwidthheight; //tpageheight % tpagewidth == 0 ? tpageheight / shortcutwidth : (tpageheight - (tpageheight % shortcutwidth)) / shortcutwidth;
 
                     int locx = 0, locy = 0; int sayac1 = 0;
 
@@ -196,8 +140,6 @@ namespace windows_programlar_kisayol_cubugu
                         {
                             Text = alldirandfile[i].Split("\\").Last(),
                             MaximumSize = new Size(scutwidthheight, 20),
-                            //Width = shortcutwidth,
-                            //  Height = shortcutwidth / 5,
                             Top = locy + scutwidthheight,
                             Left = locx,
                             ForeColor = Color.Black,
@@ -205,12 +147,20 @@ namespace windows_programlar_kisayol_cubugu
                             Font = new Font("Verdana", fontboyut),
                             Tag = alldirandfile[i].Split("\\").Last()
                         };
-                        //   MessageBox.Show(alldirandfile[sayac3]);
-                        pbox.Click += (sender, args) => { MessageBox.Show($"Picture #: {((PictureBox)sender).Tag}, Name: {((Control)sender).Name}, Current i:{i}"); OpenFile(((PictureBox)sender).Tag.ToString()); };
+
+                        pbox.Click += (sender, args) =>
+                        {
+                            //MessageBox.Show($"Picture #: {((PictureBox)sender).Tag}, Name: {((Control)sender).Name}, Current i:{i}");
+                            OpenFile(((PictureBox)sender).Tag.ToString());
+                        };
                         tabPage1.Controls.Add(pbox);
-                        label.MouseHover += (sender, args) => { ToolTip tp = new ToolTip(); tp.SetToolTip(label, ((Label)sender).Tag.ToString()); };
+
+                        label.MouseHover += (sender, args) =>
+                        {
+                            ToolTip tp = new ToolTip();
+                            tp.SetToolTip(label, ((Label)sender).Tag.ToString());
+                        };
                         tabPage1.Controls.Add(label);
-                        // locx += 30;
 
                         sayac1++;
                         if (sayac1 == yanyanasirasi)
@@ -221,10 +171,7 @@ namespace windows_programlar_kisayol_cubugu
                         }
                         else
                             locx += scutwidthheight;
-
-
                     }
-
 
                 }
 
@@ -233,15 +180,16 @@ namespace windows_programlar_kisayol_cubugu
             cmd.Dispose();
             cnt.Close();
         }
-
-        public string path = "";
-        void Click_picbox(object sender, System.EventArgs e)
+        void exit()//Uygulama kapatılırken yapılacaklar
         {
-            OpenFile(path);
-            //  System.Diagnostics.Process.Start(path,);
-            /* System.Diagnostics.Process prc = new System.Diagnostics.Process();
-             prc.StartInfo.FileName = path;
-             prc.Start();*/
+            connect();
+            string addshortcuts = "update Settings set status=@newvalue where settingname =@settingname";
+            SQLiteCommand comm2 = new SQLiteCommand(addshortcuts, cnt);
+            comm2.Parameters.AddWithValue("@newvalue", trackBar1.Value);
+            comm2.Parameters.AddWithValue("@settingname", "shortcutsize");
+            comm2.ExecuteNonQuery();
+            comm2.Dispose();
+            cnt.Close();
         }
         public static void OpenFile(string path, bool isDirectory = false)//klasör açma
         {
@@ -256,13 +204,89 @@ namespace windows_programlar_kisayol_cubugu
             proc.Start();
 
         }
+        #endregion
+
+        #region Variables
+        SQLiteConnection cnt = new SQLiteConnection(@"Data Source = database.db");
+        int ekran_x = Screen.GetBounds(new Point(0, 0)).Width;
+        int ekran_y = Screen.GetBounds(new Point(0, 0)).Height;
+        int btnsayac = 0;
+        public string path = "";
+        #endregion
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.Icon = new Icon("Appicon.ico");
+            //Başlangıç ayarı
+            button1.Text = "<";
+            this.Width = 10; this.Height = 26;
+            var frmheightloc = ekran_y % 2 == 0 ? (ekran_y / 2) - (this.Height / 2) : (++ekran_y / 2) - (this.Height / 2);
+            this.Location = new Point(ekran_x - this.Width, frmheightloc);
+            connect();
+            SQLiteCommand com = new SQLiteCommand("SELECT * FROM sqlite_master WHERE type = 'table' and name=@tablename", cnt);
+            com.Parameters.AddWithValue("@tablename", "Dir");
+            SQLiteDataReader reader = com.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                var settings = new Settings();
+                settings.Show();
+                btnsayac++;
+                com.Dispose();
+                reader.Close();
+                cnt.Close();
+                trackBar1.Value = trackbarcontrol();
+            }
+            else
+            {
+                SQLiteCommand cmd = new SQLiteCommand("select * from dir", cnt);
+                var rd = cmd.ExecuteReader();
+                if (rd.HasRows == false)
+                {
+                    var settings = new Settings();
+                    settings.Show();
+                    btnsayac++;
+                    cmd.Dispose();
+                    com.Dispose();
+                    rd.Close();
+                    reader.Close();
+                    cnt.Close();
+                    trackBar1.Value = trackbarcontrol();
+                }
+
+            }
+            cnt.Close();
+            trackBar1.Value = trackbarcontrol();
+        }
+     
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (this.Height != ekran_y)
+            {
+                button1.Text = ">";
+                this.Height = ekran_y;
+                this.Width = ekran_x % 4 == 0 ? ekran_x / 4 : (ekran_x - (ekran_x % 4)) / 4;
+                this.Location = new Point(ekran_x - this.Width, 0);
+            }
+            else
+            {
+                button1.Text = "<";
+                this.Width = 10; this.Height = 26;
+                var frmheightloc = ekran_y % 2 == 0 ? (ekran_y / 2) - (this.Height / 2) : (++ekran_y / 2) - (this.Height / 2);
+                this.Location = new Point(ekran_x - this.Width, frmheightloc);
+            }
+            if (btnsayac == 0)
+            {
+                Tasarim();
+                btnsayac++;
+            }
+
+        }
 
         private void trackBar1_MouseCaptureChanged(object sender, EventArgs e)
         {
             tabControl1.TabPages.Clear();
             Tasarim();
         }
-
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -278,20 +302,9 @@ namespace windows_programlar_kisayol_cubugu
 
         private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            //this.Close();
             Application.ExitThread(); exit();
         }
-        void exit()
-        {
-            connect();
-            string addshortcuts = "update Settings set status=@newvalue where settingname =@settingname";
-            SQLiteCommand comm2 = new SQLiteCommand(addshortcuts, cnt);
-            comm2.Parameters.AddWithValue("@newvalue", trackBar1.Value);
-            comm2.Parameters.AddWithValue("@settingname", "shortcutsize");
-            comm2.ExecuteNonQuery();
-            comm2.Dispose();
-            cnt.Close();
-        }
+
         private void shortcut_main_FormClosing(object sender, FormClosingEventArgs e)
         {
             exit();
