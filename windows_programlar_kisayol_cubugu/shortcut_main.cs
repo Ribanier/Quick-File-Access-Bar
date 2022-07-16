@@ -69,7 +69,7 @@ namespace windows_programlar_kisayol_cubugu
                     foreach (string dir2 in dizi2)
                         alldirandfile[b++] = dir2;
 
-                    var tabPage1 = new TabPage
+                    var tabPage = new TabPage
                     {
                         Text = path.Split('\\').Last() == "" ? path : path.Split('\\').Last(),
                         Tag = path,
@@ -79,16 +79,15 @@ namespace windows_programlar_kisayol_cubugu
                         Width = 100,
                         Height = 100,
                         AutoScroll = true
-                    };
-                    tabControl1.TabPages.Add(tabPage1);
 
-                    int tpagewidth = tabPage1.Width, tpageheight = tabPage1.Height;
+                    };
+                    tabControl1.TabPages.Add(tabPage);
+
+                    int tpagewidth = tabPage.Width, tpageheight = tabPage.Height;
                     int scutwidthheight = trackBar1.Value;
                     int yanyanasirasi = tpagewidth / scutwidthheight;
                     int fontboyut = scutwidthheight > 82 ? 11 : scutwidthheight > 64 ? 10 : scutwidthheight > 46 ? 9 : 8;
-
                     int locx = 0, locy = 0; int sayac1 = 0;
-
                     for (int i = 0; i < file_count; i++)
                     {
                         var fileextension = i < dizi.Count() ? "" : new System.IO.FileInfo(alldirandfile[i]).Extension;
@@ -118,7 +117,6 @@ namespace windows_programlar_kisayol_cubugu
                         {
                             try
                             {
-
                                 if (fileextension == ".lnk")
                                 {
                                     WshShell shell = new WshShell();
@@ -149,18 +147,18 @@ namespace windows_programlar_kisayol_cubugu
                         };
 
                         pbox.Click += (sender, args) =>
-                        {
+                         {
                             //MessageBox.Show($"Picture #: {((PictureBox)sender).Tag}, Name: {((Control)sender).Name}, Current i:{i}");
                             OpenFile(((PictureBox)sender).Tag.ToString());
-                        };
-                        tabPage1.Controls.Add(pbox);
+                         };
+                        tabPage.Controls.Add(pbox);
 
                         label.MouseHover += (sender, args) =>
                         {
                             ToolTip tp = new ToolTip();
                             tp.SetToolTip(label, ((Label)sender).Tag.ToString());
                         };
-                        tabPage1.Controls.Add(label);
+                        tabPage.Controls.Add(label);
 
                         sayac1++;
                         if (sayac1 == yanyanasirasi)
@@ -174,11 +172,18 @@ namespace windows_programlar_kisayol_cubugu
                     }
 
                 }
-
             }
             dr.Close();
             cmd.Dispose();
             cnt.Close();
+
+            tabControl1.Click += (sender, args) =>
+             {
+                 selecttab = tabControl1.SelectedIndex;
+                // MessageBox.Show(selecttab.ToString());             
+            };
+            if (selecttab != -1)
+                tabControl1.SelectedIndex = selecttab;
         }
         void exit()//Uygulama kapatılırken yapılacaklar
         {
@@ -193,7 +198,6 @@ namespace windows_programlar_kisayol_cubugu
         }
         public static void OpenFile(string path, bool isDirectory = false)//klasör açma
         {
-
             ProcessStartInfo pi = new ProcessStartInfo(path);
             pi.Arguments = Path.GetFileName(path);
             pi.UseShellExecute = true;
@@ -202,7 +206,6 @@ namespace windows_programlar_kisayol_cubugu
             Process proc = new Process();
             proc.StartInfo = pi;
             proc.Start();
-
         }
         #endregion
 
@@ -212,6 +215,7 @@ namespace windows_programlar_kisayol_cubugu
         int ekran_y = Screen.GetBounds(new Point(0, 0)).Height;
         int btnsayac = 0;
         public string path = "";
+        int selecttab = -1;
         #endregion
 
         private void Form1_Load(object sender, EventArgs e)
@@ -257,7 +261,7 @@ namespace windows_programlar_kisayol_cubugu
             cnt.Close();
             trackBar1.Value = trackbarcontrol();
         }
-     
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (this.Height != ekran_y)
@@ -286,6 +290,8 @@ namespace windows_programlar_kisayol_cubugu
         {
             tabControl1.TabPages.Clear();
             Tasarim();
+            if (selecttab != -1)
+                tabControl1.SelectedIndex = selecttab;
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -298,6 +304,8 @@ namespace windows_programlar_kisayol_cubugu
         {
             tabControl1.TabPages.Clear();
             Tasarim();
+            if (selecttab != -1)
+                tabControl1.SelectedIndex = selecttab;
         }
 
         private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
