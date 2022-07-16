@@ -1,3 +1,4 @@
 # windows-desktop-shortcut-access-bar
 An unobtrusive shortcut access bar that's always at hand.
-![Yeni proje](https://user-images.githubusercontent.com/44980984/179366182-84cee540-7530-4745-bb88-e135aedd11f7.gif)
+
+![Yeni proje](https://user-images.githubusercontent.com/44980984/179366406-b8b0b892-66d7-4a3b-a19a-c51668ae7a55.gif)
