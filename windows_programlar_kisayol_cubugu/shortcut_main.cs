@@ -21,15 +21,15 @@ namespace windows_programlar_kisayol_cubugu
             InitializeComponent();
         }
         #region Methods
-        void connect()//veri tabanı bağlantısı kontrolu 
+        void Connect()//veri tabanı bağlantısı kontrolu 
         {
             if (cnt.State == ConnectionState.Closed) cnt.Open();
         }
-        public int trackbarcontrol()//trackbarın veritabanındaki değerini kontrol eder
+        public int TrackbarControl()//trackbarın veritabanındaki değerini kontrol eder
         {
             try
             {
-                connect();
+                Connect();
                 SQLiteCommand cmd1 = new SQLiteCommand("select status from Settings where settingname =@settingname", cnt);
                 cmd1.Parameters.AddWithValue("@settingname", "shortcutsize");
                 int a = Convert.ToInt32(cmd1.ExecuteScalar());
@@ -49,7 +49,7 @@ namespace windows_programlar_kisayol_cubugu
             /*SQLiteCommand cmd0 = new SQLiteCommand("Select Status from Settings where settingname = 'shortcutvalue'", cnt);
               int tpshortcuts = Convert.ToInt32(cmd0.ExecuteScalar());
               cmd0.Dispose();*/
-            connect();
+            Connect();
             SQLiteCommand cmd = new SQLiteCommand("Select Path from Dir", cnt);
             SQLiteDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -68,18 +68,20 @@ namespace windows_programlar_kisayol_cubugu
                         alldirandfile[b++] = dir;
                     foreach (string dir2 in dizi2)
                         alldirandfile[b++] = dir2;
-
+                    
+                     
                     var tabPage = new TabPage
                     {
                         Text = path.Split('\\').Last() == "" ? path : path.Split('\\').Last(),
                         Tag = path,
+                        Name=path,
                         BackColor = Color.Transparent,
                         ForeColor = Color.Black,
                         Font = new Font("Verdana", 12),
                         Width = 100,
                         Height = 100,
                         AutoScroll = true
-
+                        
                     };
                     tabControl1.TabPages.Add(tabPage);
 
@@ -177,17 +179,18 @@ namespace windows_programlar_kisayol_cubugu
             cmd.Dispose();
             cnt.Close();
 
-            tabControl1.Click += (sender, args) =>
+           /* tabControl1.Click += (sender, args) =>
              {
                  selecttab = tabControl1.SelectedIndex;
-                // MessageBox.Show(selecttab.ToString());             
-            };
+                 MessageBox.Show(selecttab.ToString());             
+            };*/
+
             if (selecttab != -1)
                 tabControl1.SelectedIndex = selecttab;
         }
-        void exit()//Uygulama kapatılırken yapılacaklar
+        void Exiting()//Uygulama kapatılırken yapılacaklar
         {
-            connect();
+            Connect();
             string addshortcuts = "update Settings set status=@newvalue where settingname =@settingname";
             SQLiteCommand comm2 = new SQLiteCommand(addshortcuts, cnt);
             comm2.Parameters.AddWithValue("@newvalue", trackBar1.Value);
@@ -224,9 +227,9 @@ namespace windows_programlar_kisayol_cubugu
             //Başlangıç ayarı
             button1.Text = "<";
             this.Width = 10; this.Height = 26;
-            var frmheightloc = ekran_y % 2 == 0 ? (ekran_y / 2) - (this.Height / 2) : (++ekran_y / 2) - (this.Height / 2);
+            int frmheightloc = ekran_y % 2 == 0 ? (ekran_y / 2) - (this.Height / 2) : (++ekran_y / 2) - (this.Height / 2);
             this.Location = new Point(ekran_x - this.Width, frmheightloc);
-            connect();
+            Connect();
             SQLiteCommand com = new SQLiteCommand("SELECT * FROM sqlite_master WHERE type = 'table' and name=@tablename", cnt);
             com.Parameters.AddWithValue("@tablename", "Dir");
             SQLiteDataReader reader = com.ExecuteReader();
@@ -238,7 +241,7 @@ namespace windows_programlar_kisayol_cubugu
                 com.Dispose();
                 reader.Close();
                 cnt.Close();
-                trackBar1.Value = trackbarcontrol();
+                trackBar1.Value = TrackbarControl();
             }
             else
             {
@@ -254,12 +257,12 @@ namespace windows_programlar_kisayol_cubugu
                     rd.Close();
                     reader.Close();
                     cnt.Close();
-                    trackBar1.Value = trackbarcontrol();
+                    trackBar1.Value = TrackbarControl();
                 }
 
             }
             cnt.Close();
-            trackBar1.Value = trackbarcontrol();
+            trackBar1.Value = TrackbarControl();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -289,6 +292,7 @@ namespace windows_programlar_kisayol_cubugu
         private void trackBar1_MouseCaptureChanged(object sender, EventArgs e)
         {
             tabControl1.TabPages.Clear();
+            
             Tasarim();
             if (selecttab != -1)
                 tabControl1.SelectedIndex = selecttab;
@@ -302,7 +306,12 @@ namespace windows_programlar_kisayol_cubugu
 
         private void reloadToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            tabControl1.TabPages.Clear();
+            
+            foreach(TabPage tpg in tabControl1.TabPages)
+            {
+                tabControl1.TabPages.Remove(tpg);               
+              //  MessageBox.Show(tpg.ToString());
+            }tabControl1.TabPages.Clear();
             Tasarim();
             if (selecttab != -1)
                 tabControl1.SelectedIndex = selecttab;
@@ -310,12 +319,43 @@ namespace windows_programlar_kisayol_cubugu
 
         private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Application.ExitThread(); exit();
+            Application.ExitThread(); 
+            Exiting();
         }
 
         private void shortcut_main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            exit();
+            Exiting();
         }
+
+        private void tabControl1_Click(object sender, EventArgs e)
+        {
+            selecttab = tabControl1.SelectedIndex;
+           // MessageBox.Show(selecttab.ToString());
+        }
+
+        private void tabControl1_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+              
+    string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, true);
+                foreach(string suruklepath in s)
+                {
+                    MessageBox.Show(suruklepath);
+                }
+                
+            }
+        }
+
+        private void tabControl1_DragEnter(object sender, DragEventArgs e)
+        {
+            MessageBox.Show("asdsa");
+
+                e.Effect = DragDropEffects.Copy;
+          
+        }
+
+       
     }
 }
