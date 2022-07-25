@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using IWshRuntimeLibrary;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SQLite;
-using System.IO;
 using System.Diagnostics;
-using IWshRuntimeLibrary;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using File = System.IO.File;
 
 namespace windows_programlar_kisayol_cubugu
 {
@@ -68,20 +65,20 @@ namespace windows_programlar_kisayol_cubugu
                         alldirandfile[b++] = dir;
                     foreach (string dir2 in dizi2)
                         alldirandfile[b++] = dir2;
-                    
-                     
+
+
                     var tabPage = new TabPage
                     {
                         Text = path.Split('\\').Last() == "" ? path : path.Split('\\').Last(),
                         Tag = path,
-                        Name=path,
+                        Name = path,
                         BackColor = Color.Transparent,
                         ForeColor = Color.Black,
                         Font = new Font("Verdana", 12),
                         Width = 100,
                         Height = 100,
                         AutoScroll = true
-                        
+
                     };
                     tabControl1.TabPages.Add(tabPage);
 
@@ -150,8 +147,8 @@ namespace windows_programlar_kisayol_cubugu
 
                         pbox.Click += (sender, args) =>
                          {
-                            //MessageBox.Show($"Picture #: {((PictureBox)sender).Tag}, Name: {((Control)sender).Name}, Current i:{i}");
-                            OpenFile(((PictureBox)sender).Tag.ToString());
+                             //MessageBox.Show($"Picture #: {((PictureBox)sender).Tag}, Name: {((Control)sender).Name}, Current i:{i}");
+                             OpenFile(((PictureBox)sender).Tag.ToString());
                          };
                         tabPage.Controls.Add(pbox);
 
@@ -179,11 +176,6 @@ namespace windows_programlar_kisayol_cubugu
             cmd.Dispose();
             cnt.Close();
 
-           /* tabControl1.Click += (sender, args) =>
-             {
-                 selecttab = tabControl1.SelectedIndex;
-                 MessageBox.Show(selecttab.ToString());             
-            };*/
 
             if (selecttab != -1)
                 tabControl1.SelectedIndex = selecttab;
@@ -267,6 +259,16 @@ namespace windows_programlar_kisayol_cubugu
 
         private void button1_Click(object sender, EventArgs e)
         {
+            RightSizeAndLoc();
+            if (btnsayac == 0)
+            {
+                Tasarim();
+                btnsayac++;
+            }
+        }
+
+        private void RightSizeAndLoc()
+        {
             if (this.Height != ekran_y)
             {
                 button1.Text = ">";
@@ -277,22 +279,17 @@ namespace windows_programlar_kisayol_cubugu
             else
             {
                 button1.Text = "<";
-                this.Width = 10; this.Height = 26;
+                this.Width = 10;
+                this.Height = 26;
                 var frmheightloc = ekran_y % 2 == 0 ? (ekran_y / 2) - (this.Height / 2) : (++ekran_y / 2) - (this.Height / 2);
                 this.Location = new Point(ekran_x - this.Width, frmheightloc);
             }
-            if (btnsayac == 0)
-            {
-                Tasarim();
-                btnsayac++;
-            }
-
         }
 
         private void trackBar1_MouseCaptureChanged(object sender, EventArgs e)
         {
             tabControl1.TabPages.Clear();
-            
+
             Tasarim();
             if (selecttab != -1)
                 tabControl1.SelectedIndex = selecttab;
@@ -306,12 +303,13 @@ namespace windows_programlar_kisayol_cubugu
 
         private void reloadToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            
-            foreach(TabPage tpg in tabControl1.TabPages)
+
+            foreach (TabPage tpg in tabControl1.TabPages)
             {
-                tabControl1.TabPages.Remove(tpg);               
-              //  MessageBox.Show(tpg.ToString());
-            }tabControl1.TabPages.Clear();
+                tabControl1.TabPages.Remove(tpg);
+                //  MessageBox.Show(tpg.ToString());
+            }
+            tabControl1.TabPages.Clear();
             Tasarim();
             if (selecttab != -1)
                 tabControl1.SelectedIndex = selecttab;
@@ -319,7 +317,7 @@ namespace windows_programlar_kisayol_cubugu
 
         private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Application.ExitThread(); 
+            Application.ExitThread();
             Exiting();
         }
 
@@ -331,31 +329,63 @@ namespace windows_programlar_kisayol_cubugu
         private void tabControl1_Click(object sender, EventArgs e)
         {
             selecttab = tabControl1.SelectedIndex;
-           // MessageBox.Show(selecttab.ToString());
+            // MessageBox.Show(selecttab.ToString());
+        }
+
+        void DragDropFileOrDirectory(string durum, string sourcepath)
+        {
+            if (durum.ToUpper() == "MOVE")
+            {
+                if (Directory.Exists(sourcepath))
+                {
+                    Directory.Move(sourcepath, tabControl1.SelectedTab.Tag.ToString());
+
+                }
+                else
+                {
+                    File.Move(sourcepath, tabControl1.SelectedTab.Tag.ToString());
+
+                }
+            }
+
+            if (durum.ToUpper() == "COPY")
+            {
+                if (Directory.Exists(sourcepath))
+                {
+
+                }
+                else
+                {
+                    File.Copy(sourcepath, tabControl1.SelectedTab.Tag.ToString());
+
+
+                }
+            }
+
         }
 
         private void tabControl1_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-              
-    string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, true);
-                foreach(string suruklepath in s)
+
+                string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, true);
+                foreach (string suruklepath in s)
                 {
-                    MessageBox.Show(suruklepath);
+                    DragDropFileOrDirectory("move", suruklepath);
+                    Tasarim();
+                    if (selecttab != -1)
+                        tabControl1.SelectedIndex = selecttab;
                 }
-                
+
             }
         }
 
         private void tabControl1_DragEnter(object sender, DragEventArgs e)
         {
-            MessageBox.Show("asdsa");
-
-                e.Effect = DragDropEffects.Copy;
-          
+            e.Effect = DragDropEffects.All;
         }
 
-       
+
     }
 }
