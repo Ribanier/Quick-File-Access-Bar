@@ -1,4 +1,4 @@
-# windows-desktop-shortcut-access-bar
+# Quick File Access Bar
 An unobtrusive shortcut access bar that's always at hand.
 
 
