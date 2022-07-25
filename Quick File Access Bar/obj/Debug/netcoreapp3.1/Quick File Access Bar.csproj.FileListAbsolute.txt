@@ -1,0 +1,35 @@
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.exe
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.deps.json
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.runtimeconfig.json
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.runtimeconfig.dev.json
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.pdb
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\EntityFramework.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\System.Data.SQLite.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\System.Data.SQLite.EF6.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\SQLite.Interop.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\SQLite.Interop.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SQLite.Interop.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SQLite.Interop.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Interop.IWshRuntimeLibrary.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Interop.IWshRuntimeLibrary.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.csproj.ResolveComReference.cache
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick_File_Access_Bar.QuickFileAccessBar.resources
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick_File_Access_Bar.Settings.resources
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.csproj.GenerateResource.cache
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.AssemblyInfoInputs.cache
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.AssemblyInfo.cs
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.csproj.CoreCompileInputs.cache
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.csproj.CopyComplete
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.dll
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.pdb
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.genruntimeconfig.cache
+C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.csproj.AssemblyReference.cache

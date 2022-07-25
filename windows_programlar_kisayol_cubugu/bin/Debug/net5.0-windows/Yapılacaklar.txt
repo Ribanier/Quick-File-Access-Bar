@@ -1,3 +1,0 @@
-eklediğim yenile butonuna basınca sayfayı yenilerken görünürdeki her şeyi silip baştan üretiyor ama arka planda nesneler kalıyor ve bellekte yer kaplıyor.
-Bunun için çözümüm bir dizi veya liste kullanarak her tabpagenin içindeki verilerin sayısını ve üretilen son nesnenin konumunu eklemek. Bu kaydettiğim veriler ile her yenilemede 
-veri kontrolu yapmak eksik yok ise nesne üretmemesini sağlamak, var ise son konumdan itibaren yeni nesneleri eklemek veya mevcut nesneler üzerinden degişim yapmak.
