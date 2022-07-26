@@ -66,10 +66,12 @@ namespace Quick_File_Access_Bar
         }
 
         #region Methods
+
         void Connect() //veri tabanı bağlantısı kontrolu 
         {
             if (cnt.State == ConnectionState.Closed) cnt.Open();
         }
+
         public int TrackbarControl() //trackbarın veritabanındaki değerini kontrol eder
         {
             try
@@ -89,6 +91,7 @@ namespace Quick_File_Access_Bar
             }
 
         }
+
         public void Tasarim() //uygulamanın klasor olusumu ve düzenini tasarlamak
         {
 
@@ -199,9 +202,14 @@ namespace Quick_File_Access_Bar
             dr.Close();
             cmd.Dispose();
             cnt.Close();
+            TabPage addTabPage = new TabPage()
+            {
+                Text = "+",
 
-            if (selectTab != -1)
-                tabControl1.SelectedIndex = selectTab;
+            };
+            tabControl1.Controls.Add(addTabPage);
+
+            selectedTab();
         }
 
         void Exiting() //Uygulama kapatılırken yapılacaklar
@@ -215,6 +223,7 @@ namespace Quick_File_Access_Bar
             comm2.Dispose();
             cnt.Close();
         }
+
         public static void OpenFile(string path, bool isDirectory = false) //klasör açma
         {
             ProcessStartInfo pi = new ProcessStartInfo(path)
@@ -230,8 +239,11 @@ namespace Quick_File_Access_Bar
             };
             proc.Start();
         }
+
         #endregion
+
         #region Classes
+
         class AddDynamicObject
         {
             public TabPage addTabPage(string tagAndText)
@@ -287,7 +299,9 @@ namespace Quick_File_Access_Bar
             }
 
         }
+
         #endregion
+
         private void RightSizeAndLoc()
         {
             if (this.Height != screenY)
@@ -324,7 +338,6 @@ namespace Quick_File_Access_Bar
         {
 
             RightSizeAndLoc();
-
             if (buttonCounter == 0)
             {
                 Tasarim();
@@ -341,16 +354,11 @@ namespace Quick_File_Access_Bar
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            foreach (TabPage tpg in tabControl1.TabPages)
-            {
-                tabControl1.TabPages.Remove(tpg);
-                //  MessageBox.Show(tpg.ToString());
-            }
-
-            tabControl1.TabPages.Clear();
-            Tasarim();
-            if (selectTab != -1)
-                tabControl1.SelectedIndex = selectTab;
+            /*  foreach (TabPage tpg in tabControl1.TabPages)
+               {
+                   tabControl1.TabPages.Remove(tpg);
+               }*/
+           reload();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -359,13 +367,17 @@ namespace Quick_File_Access_Bar
             Exiting();
         }
 
+        void reload()
+        {
+            newTabSelect = false;
+            tabControl1.TabPages.Clear();
+            newTabSelect = true;
+            Tasarim();
+            selectedTab();
+        }
         private void trackBar1_MouseCaptureChanged(object sender, EventArgs e)
         {
-            tabControl1.TabPages.Clear();
-
-            Tasarim();
-            if (selectTab != -1)
-                tabControl1.SelectedIndex = selectTab;
+         reload();
         }
 
         private void QuickFileAccessBar_FormClosing(object sender, FormClosingEventArgs e)
@@ -373,10 +385,58 @@ namespace Quick_File_Access_Bar
             Exiting();
         }
 
+        void selectedTab()
+        {
+            if (selectTab != -1)
+                tabControl1.SelectedIndex = selectTab;
+
+        }
+
         private void tabControl1_Click(object sender, EventArgs e)
         {
-            selectTab = tabControl1.SelectedIndex;
+            int tabPageCount = tabControl1.TabPages.Count;
+            if (tabControl1.SelectedIndex != tabPageCount - 1)
+            {
+                selectTab = tabControl1.SelectedIndex;
+            }
 
+
+        }
+
+        bool newTabSelect = true;
+        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (newTabSelect)
+            {
+                if (tabControl1.SelectedIndex == tabControl1.TabPages.Count - 1)
+                {
+                    e.Cancel = true;
+                    var folderBrowserDialog1 = new FolderBrowserDialog();
+                    if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                    { 
+                        var folderPath = folderBrowserDialog1.SelectedPath;
+                        try
+                        {
+                            if (Directory.Exists(folderPath))
+                            {
+                                Connect();
+                                var comm = new SQLiteCommand("insert into Dir(Path) values(@klasoryolu)", cnt);
+                                comm.Parameters.AddWithValue("@klasoryolu", folderPath);
+                                comm.ExecuteNonQuery();
+                                comm.Dispose();
+                                cnt.Close();
+                                reload();
+                            }
+                            else
+                                MessageBox.Show("Klasör eklenemedi. Klasör yolunu kontrol ederek tekrar deneyiniz.");
+                        }
+                        catch (Exception hata)
+                        {
+                            MessageBox.Show(hata.ToString());
+                        }
+                    }
+                }
+            }
         }
     }
 }

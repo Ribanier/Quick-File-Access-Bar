@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sadik\\source\\repos\\Quick File Access Bar\\Quick File Access Bar\\Quick File Access Bar.csproj": {}
+    "D:\\Yazılım\\Github ve projeler\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sadik\\source\\repos\\Quick File Access Bar\\Quick File Access Bar\\Quick File Access Bar.csproj": {
+    "D:\\Yazılım\\Github ve projeler\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sadik\\source\\repos\\Quick File Access Bar\\Quick File Access Bar\\Quick File Access Bar.csproj",
+        "projectUniqueName": "D:\\Yazılım\\Github ve projeler\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj",
         "projectName": "Quick File Access Bar",
-        "projectPath": "C:\\Users\\sadik\\source\\repos\\Quick File Access Bar\\Quick File Access Bar\\Quick File Access Bar.csproj",
+        "projectPath": "D:\\Yazılım\\Github ve projeler\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj",
         "packagesPath": "C:\\Users\\sadik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sadik\\source\\repos\\Quick File Access Bar\\Quick File Access Bar\\obj\\",
+        "outputPath": "D:\\Yazılım\\Github ve projeler\\Quick-File-Access-Bar\\Quick File Access Bar\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -33,3 +33,38 @@ C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debu
 C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.pdb
 C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.genruntimeconfig.cache
 C:\Users\sadik\source\repos\Quick File Access Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.csproj.AssemblyReference.cache
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.exe
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.deps.json
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.runtimeconfig.json
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.runtimeconfig.dev.json
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Quick File Access Bar.pdb
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\EntityFramework.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\System.Data.SQLite.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\System.Data.SQLite.EF6.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\SQLite.Interop.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\SQLite.Interop.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SQLite.Interop.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SQLite.Interop.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\bin\Debug\netcoreapp3.1\Interop.IWshRuntimeLibrary.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.csproj.AssemblyReference.cache
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Interop.IWshRuntimeLibrary.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.csproj.ResolveComReference.cache
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick_File_Access_Bar.QuickFileAccessBar.resources
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick_File_Access_Bar.Settings.resources
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.csproj.GenerateResource.cache
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.GeneratedMSBuildEditorConfig.editorconfig
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.AssemblyInfoInputs.cache
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.AssemblyInfo.cs
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.csproj.CoreCompileInputs.cache
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.csproj.CopyComplete
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.dll
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.pdb
+D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\obj\Debug\netcoreapp3.1\Quick File Access Bar.genruntimeconfig.cache
