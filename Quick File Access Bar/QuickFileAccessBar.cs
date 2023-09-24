@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Quick_File_Access_Bar
@@ -16,6 +17,8 @@ namespace Quick_File_Access_Bar
         {
             InitializeComponent();
         }
+        [DllImport("shell32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr ExtractAssociatedIcon(IntPtr hInst, string lpIconPath, out ushort lpiIcon);
 
         private void QuickFileAccessBar_Load(object sender, EventArgs e)
         {
@@ -154,8 +157,23 @@ namespace Quick_File_Access_Bar
                                             Bitmap.FromHicon(Icon.ExtractAssociatedIcon(shortcut.TargetPath).Handle);
                                 }
                                 else
-                                    pictureBox.Image =
-                                        Bitmap.FromHicon(Icon.ExtractAssociatedIcon(allDirAndFile[i]).Handle);
+                                {
+                                    Icon fileIcon = GetFileIcon(allDirAndFile[i]);
+
+                                    if (fileIcon != null)
+                                    {
+                                        // İkonu kullanabilirsiniz
+                                        // Örneğin bir PictureBox içinde gösterebilirsiniz.
+
+                                        pictureBox.Image = fileIcon.ToBitmap();
+
+
+                                        // İkona erişimi serbest bırakın
+                                        fileIcon.Dispose();
+                                    }
+                                    //  pictureBox.Image =Bitmap.FromHicon(Icon.ExtractAssociatedIcon(allDirAndFile[i]).Handle);
+                                }
+
                             }
                             catch
                             {
@@ -211,7 +229,18 @@ namespace Quick_File_Access_Bar
 
             selectedTab();
         }
+        public static Icon GetFileIcon(string filePath)
+        {
+            ushort iconIndex = 0;
+            IntPtr hIcon = ExtractAssociatedIcon(IntPtr.Zero, filePath, out iconIndex);
 
+            if (hIcon != IntPtr.Zero)
+            {
+                return Icon.FromHandle(hIcon);
+            }
+
+            return null;
+        }
         void Exiting() //Uygulama kapatılırken yapılacaklar
         {
             Connect();
@@ -358,7 +387,7 @@ namespace Quick_File_Access_Bar
                {
                    tabControl1.TabPages.Remove(tpg);
                }*/
-           reload();
+            reload();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -377,7 +406,7 @@ namespace Quick_File_Access_Bar
         }
         private void trackBar1_MouseCaptureChanged(object sender, EventArgs e)
         {
-         reload();
+            reload();
         }
 
         private void QuickFileAccessBar_FormClosing(object sender, FormClosingEventArgs e)
@@ -413,7 +442,7 @@ namespace Quick_File_Access_Bar
                     e.Cancel = true;
                     var folderBrowserDialog1 = new FolderBrowserDialog();
                     if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-                    { 
+                    {
                         var folderPath = folderBrowserDialog1.SelectedPath;
                         try
                         {

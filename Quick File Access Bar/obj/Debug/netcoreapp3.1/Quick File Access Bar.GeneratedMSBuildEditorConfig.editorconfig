@@ -1,3 +1,9 @@
 is_global = true
+build_property.ApplicationManifest = 
+build_property.StartupObject = 
+build_property.ApplicationDefaultFont = 
+build_property.ApplicationHighDpiMode = 
+build_property.ApplicationUseCompatibleTextRendering = 
+build_property.ApplicationVisualStyles = 
 build_property.RootNamespace = Quick_File_Access_Bar
-build_property.ProjectDir = D:\Yazılım\Github ve projeler\Quick-File-Access-Bar\Quick File Access Bar\
+build_property.ProjectDir = C:\Users\sadik\OneDrive\Masaüstü\yazilim\github\Quick-File-Access-Bar\Quick File Access Bar\

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Yazılım\\Github ve projeler\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj": {}
+    "C:\\Users\\sadik\\OneDrive\\Masaüstü\\yazilim\\github\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj": {}
   },
   "projects": {
-    "D:\\Yazılım\\Github ve projeler\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj": {
+    "C:\\Users\\sadik\\OneDrive\\Masaüstü\\yazilim\\github\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Yazılım\\Github ve projeler\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj",
+        "projectUniqueName": "C:\\Users\\sadik\\OneDrive\\Masaüstü\\yazilim\\github\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj",
         "projectName": "Quick File Access Bar",
-        "projectPath": "D:\\Yazılım\\Github ve projeler\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj",
+        "projectPath": "C:\\Users\\sadik\\OneDrive\\Masaüstü\\yazilim\\github\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj",
         "packagesPath": "C:\\Users\\sadik\\.nuget\\packages\\",
-        "outputPath": "D:\\Yazılım\\Github ve projeler\\Quick-File-Access-Bar\\Quick File Access Bar\\obj\\",
+        "outputPath": "C:\\Users\\sadik\\OneDrive\\Masaüstü\\yazilim\\github\\Quick-File-Access-Bar\\Quick File Access Bar\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\sadik\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -55,7 +55,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -67,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

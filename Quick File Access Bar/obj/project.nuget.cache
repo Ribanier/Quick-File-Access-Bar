@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KtNzHNAcDP4ewd+QX7bZI6LPlH74iFALUM7KbyFF+MN2joiK0pWI3VJK9RW/36JVOGs1lO08wIB5OBoqpj7lqA==",
+  "dgSpecHash": "dr/u0yGZ/xLZ/n0ognunVc1Qki5s+4cVhjRSmKS1i8MLFQlcfzK+rKpXVXfFVtagYpKjvOZhYfmBwrMerDj4Nw==",
   "success": true,
-  "projectFilePath": "D:\\Yazılım\\Github ve projeler\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj",
+  "projectFilePath": "C:\\Users\\sadik\\OneDrive\\Masaüstü\\yazilim\\github\\Quick-File-Access-Bar\\Quick File Access Bar\\Quick File Access Bar.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sadik\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\sadik\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
